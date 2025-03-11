@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Carrusel de Servicios
+  // Carrusel de Servicios (sin auto-rotación)
   const carouselInner = document.querySelector('.carousel-inner');
   const items = document.querySelectorAll('.carousel-item');
   const totalItems = items.length;
@@ -57,24 +57,13 @@ document.addEventListener('DOMContentLoaded', function() {
     showItem(currentIndex);
   }
 
-  // Auto-rotación cada 5 segundos
-  let carouselInterval = setInterval(nextItem, 5000);
-
-  // Botones de navegación
   const btnNext = document.querySelector('.carousel-next');
   const btnPrev = document.querySelector('.carousel-prev');
 
   if (btnNext && btnPrev) {
-    btnNext.addEventListener('click', function() {
-      clearInterval(carouselInterval);
-      nextItem();
-      carouselInterval = setInterval(nextItem, 5000);
-    });
-    btnPrev.addEventListener('click', function() {
-      clearInterval(carouselInterval);
-      prevItem();
-      carouselInterval = setInterval(nextItem, 5000);
-    });
+    // Sin auto-rotación, solo cambian al hacer clic
+    btnNext.addEventListener('click', nextItem);
+    btnPrev.addEventListener('click', prevItem);
   }
 
   // Intersection Observer para animaciones fade-in y slide-in
@@ -95,12 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, appearOptions);
 
-  faders.forEach(fader => {
-    appearOnScroll.observe(fader);
-  });
-  sliders.forEach(slider => {
-    appearOnScroll.observe(slider);
-  });
+  faders.forEach(fader => appearOnScroll.observe(fader));
+  sliders.forEach(slider => appearOnScroll.observe(slider));
 
   // Simulated Contact Form Submission
   const contactForm = document.getElementById('contact-form');
@@ -122,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Dinamismo extra en el Hero: "pulse" al botón y "float" al título
+  // Efectos extra en el Hero
   const heroBtn = document.querySelector('.hero-content .btn');
   if (heroBtn) {
     heroBtn.classList.add('btn-pulse');
