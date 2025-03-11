@@ -261,15 +261,15 @@ nav {
   color: var(--secondary-color);
 }
 
-/* CARRUSEL DE SERVICIOS */
+/* Carrusel de Servicios */
 
-/* Centra y limita ancho del carrusel */
+/* Carrusel centrado y sin mostrar el siguiente item */
 .carousel {
   position: relative;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  overflow: hidden; /* Para que no se vea el siguiente item */
+  overflow: hidden; /* No se vea el siguiente item */
   margin-top: 40px;
 }
 
@@ -278,14 +278,14 @@ nav {
   transition: transform 0.8s ease-in-out;
 }
 
-/* Cada item ocupa el 100% del ancho para no mostrar el siguiente */
+/* Cada servicio con padding amplio */
 .carousel-item {
   min-width: 100%;
   box-sizing: border-box;
-  padding: 40px 60px; /* Espacio interno para separar texto de los bordes */
+  padding: 40px 60px; /* Espacio interno para separar texto de bordes */
 }
 
-/* Título centrado */
+/* Título centrado de cada servicio */
 .service-title {
   text-align: center;
   margin-bottom: 15px;
@@ -300,7 +300,7 @@ nav {
 .service-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 50px; /* Aumenta el espacio entre imagen y texto */
+  gap: 50px; /* Espacio entre imagen y texto */
   align-items: center;
   justify-content: center;
 }
@@ -321,7 +321,7 @@ nav {
   text-align: left;
 }
 
-/* Botones del Carrusel */
+/* Flechas del Carrusel (en la parte blanca, a los costados) */
 .carousel-controls {
   position: absolute;
   top: 50%;
@@ -330,7 +330,8 @@ nav {
   justify-content: space-between;
   transform: translateY(-50%);
   pointer-events: none;
-  padding: 0 100px; /* Aleja las flechas del texto */
+  /* Aumentamos para alejarlas más del contenido */
+  padding: 0 10px;
   z-index: 10;
 }
 .carousel-controls button {
