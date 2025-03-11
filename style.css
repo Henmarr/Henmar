@@ -1,8 +1,3 @@
-/* Variables de colores y fuentes */
-:root {
-  --primary-color: #1F375B; /* Azul marino */
-  --secondary-color: #808184; /* Gris metálico */
-  --light-color: #ffffff;
   --dark-color: #333333;
   --bg-dark: #1F375B;
   --font-family: 'Roboto', sans-serif;
@@ -21,7 +16,7 @@ body {
   background-color: var(--light-color);
 }
 
-/* Contenedor */
+/* Contenedor general */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -218,7 +213,7 @@ nav {
   transform: translateY(0);
 }
 
-/* Content Grid (Quiénes Somos) */
+/* Quiénes Somos */
 .content-grid {
   display: flex;
   flex-wrap: wrap;
@@ -261,29 +256,49 @@ nav {
   color: var(--secondary-color);
 }
 
-/* Carrusel de Servicios */
+/* CARRUSEL DE SERVICIOS */
+
+/* Centra y limita ancho del carrusel */
 .carousel {
   position: relative;
-  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden; /* Para que no se vea el siguiente item */
   margin-top: 40px;
 }
+
 .carousel-inner {
   display: flex;
   transition: transform 0.8s ease-in-out;
 }
+
+/* Cada item ocupa el 100% del ancho para no mostrar el siguiente */
 .carousel-item {
   min-width: 100%;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 40px 60px; /* Espacio interno para separar texto de los bordes */
 }
+
+/* Título centrado */
+.service-title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.service-title h3 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+/* Imagen + texto */
 .service-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 50px; /* Aumenta el espacio entre imagen y texto */
   align-items: center;
   justify-content: center;
 }
-/* Efecto hover en imágenes de servicio */
 .service-image img {
   width: 100%;
   max-width: 400px;
@@ -300,32 +315,18 @@ nav {
   min-width: 280px;
   text-align: left;
 }
-.service-text h3 {
-  color: var(--primary-color);
-  margin-bottom: 10px;
-  font-size: 1.8rem;
-}
-.service-text p {
-  font-size: 1rem;
-  margin-bottom: 10px;
-  color: var(--dark-color);
-}
-.service-text ul {
-  list-style-type: disc;
-  margin-left: 20px;
-  font-size: 0.95rem;
-  color: var(--dark-color);
-}
 
 /* Botones del Carrusel */
 .carousel-controls {
   position: absolute;
   top: 50%;
-  width: 100%;
+  left: 0; right: 0;
   display: flex;
   justify-content: space-between;
   transform: translateY(-50%);
   pointer-events: none;
+  padding: 0 100px; /* Aleja las flechas del texto */
+  z-index: 10;
 }
 .carousel-controls button {
   pointer-events: all;
@@ -411,12 +412,12 @@ nav {
   font-size: 1.2rem;
   color: #ffcc00;
 }
-/* Botón único a WhatsApp */
+/* Botón de WhatsApp */
 .btn-wsp {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #25D366; /* verde típico de WhatsApp */
+  background: #25D366;
   color: #fff;
   padding: 0.8rem 1.2rem;
   border-radius: 4px;
@@ -503,7 +504,6 @@ footer {
 .social-icons {
   margin-top: 1rem;
 }
-/* Queda vacío si no quieres más redes */
 .social-icons a {
   color: var(--secondary-color);
   margin: 0 0.5rem;
@@ -558,8 +558,9 @@ footer {
   to { transform: translateY(-10px); }
 }
 
-/* Responsive */
+/* RESPONSIVE: Ajustes para móviles */
 @media (max-width: 768px) {
+  /* Menú hamburguesa */
   .nav-menu {
     flex-direction: column;
     position: absolute;
@@ -581,12 +582,24 @@ footer {
   .nav-menu li a {
     color: var(--primary-color);
   }
+
+  /* Hero en pantallas pequeñas */
   .hero-content h1 {
     font-size: 2.5rem;
   }
-  .content-grid {
-    flex-direction: column;
+
+  /* Carrusel en móvil */
+  .carousel-item {
+    padding: 20px 20px;
   }
+  .service-content {
+    gap: 30px;
+  }
+  .carousel-controls {
+    padding: 0 20px;
+  }
+
+  /* Contacto en móvil */
   .contact-wrapper {
     grid-template-columns: 1fr;
   }
