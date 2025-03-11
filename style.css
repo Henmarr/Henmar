@@ -1,3 +1,8 @@
+/* Variables de colores y fuentes */
+:root {
+  --primary-color: #1F375B; /* Azul marino */
+  --secondary-color: #808184; /* Gris metálico */
+  --light-color: #ffffff;
   --dark-color: #333333;
   --bg-dark: #1F375B;
   --font-family: 'Roboto', sans-serif;
