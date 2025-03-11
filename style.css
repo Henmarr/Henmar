@@ -331,7 +331,7 @@ nav {
   transform: translateY(-50%);
   pointer-events: none;
   /* Aumentamos para alejarlas más del contenido */
-  padding: 0 300px;
+  padding: 0 10px;
   z-index: 10;
 }
 .carousel-controls button {
