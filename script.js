@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navMenu.classList.toggle('open');
   });
 
-  // Smooth Scroll for Anchor Links
+  // Smooth Scroll para enlaces de anclaje
   const links = document.querySelectorAll('a[href^="#"]');
   links.forEach(link => {
     link.addEventListener('click', function(e) {
@@ -37,7 +37,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Carrusel de Servicios (sin auto-rotación)
+  // Función para animación "profesional"
+  function applyProfessionalAnimation(el) {
+    // Ajusta a tu gusto (desplazamiento, escala, etc.)
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(40px) scale(0.9)';
+    el.style.transition = 'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.8s ease-out';
+
+    requestAnimationFrame(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0) scale(1)';
+    });
+  }
+
+  // Intersection Observer para aplicar la animación
+  const elementsToAnimate = document.querySelectorAll('.content-to-animate, .carousel-item, .offers-image, .hex-item');
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        applyProfessionalAnimation(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elementsToAnimate.forEach(el => {
+    observer.observe(el);
+  });
+
+  // Carrusel de Servicios
   const carouselInner = document.querySelector('.carousel-inner');
   const items = document.querySelectorAll('.carousel-item');
   const totalItems = items.length;
@@ -61,40 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const btnPrev = document.querySelector('.carousel-prev');
 
   if (btnNext && btnPrev) {
-    // Sin auto-rotación, solo cambian al hacer clic
     btnNext.addEventListener('click', nextItem);
     btnPrev.addEventListener('click', prevItem);
-  }
-
-  // Intersection Observer para animaciones fade-in y slide-in
-  const faders = document.querySelectorAll('.fade-in');
-  const sliders = document.querySelectorAll('.content-grid .text, .service-content');
-  sliders.forEach(el => el.classList.add('slide-in'));
-
-  const appearOptions = {
-    threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px"
-  };
-
-  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    });
-  }, appearOptions);
-
-  faders.forEach(fader => appearOnScroll.observe(fader));
-  sliders.forEach(slider => appearOnScroll.observe(slider));
-
-  // Simulated Contact Form Submission
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('¡Gracias por contactarnos! Nos comunicaremos a la brevedad.');
-      contactForm.reset();
-    });
   }
 
   // Botón "Back to Top"
@@ -107,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Efectos extra en el Hero
+  // Efectos extra en el Hero (si lo deseas)
   const heroBtn = document.querySelector('.hero-content .btn');
   if (heroBtn) {
     heroBtn.classList.add('btn-pulse');
